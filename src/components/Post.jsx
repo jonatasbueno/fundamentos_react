@@ -22,6 +22,14 @@ export function Post({ author, content, publishedAt }) {
     setNewComment('');
   }
 
+  function deleteComment(comment) {
+    // imutabilidade - as variáveis não sofrem mutação, nós criamos um novo valor
+
+    const commentWithDeletedComment = comments.filter(comment => comment !== comment);
+
+    setComments(commentWithDeletedComment)
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -64,7 +72,7 @@ export function Post({ author, content, publishedAt }) {
 
       <div className={styles.commentList}>
         {comments.map(comment => (
-          <Comment key={comment} content={comment} />
+          <Comment key={comment} content={comment} onDeleteComment={deleteComment} />
         ))}
       </div>
     </article >
