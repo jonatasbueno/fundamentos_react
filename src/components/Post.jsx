@@ -22,10 +22,10 @@ export function Post({ author, content, publishedAt }) {
     setNewComment('');
   }
 
-  function deleteComment(comment) {
+  function deleteComment(commentDeleted) {
     // imutabilidade - as variáveis não sofrem mutação, nós criamos um novo valor
 
-    const commentWithDeletedComment = comments.filter(comment => comment !== comment);
+    const commentWithDeletedComment = comments.filter(comment => comment !== commentDeleted);
 
     setComments(commentWithDeletedComment)
   }
@@ -60,9 +60,11 @@ export function Post({ author, content, publishedAt }) {
         <strong>Deixe seu feedback</strong>
 
         <textarea
+          name="comment"
           value={newComment}
           onChange={event => setNewComment(event.target.value)}
           placeholder="Deixe seu comentário"
+          required
         />
 
         <footer>
